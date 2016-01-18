@@ -1,0 +1,40 @@
+<% if !flash[:notice].blank? %>
+   <div class = "alert alert-info">
+      <%= flash[:notice] %>
+   </div>
+<% end %>
+
+<br />
+
+<%= link_to "New Image", new_image_path, class: "btn btn-primary" %>
+<br />
+<br />
+
+<table class = "table table-bordered table-striped">
+   <thead>
+      <tr>
+         <th>Body Type</th>
+         <th>Image</th>
+         <th> </th>
+      </tr>
+   </thead>
+   
+   <tbody>
+      <% @Images.each do |t| %>
+         
+         <tr>
+            <td><%= t.body_type %></td>
+
+            <% if t.attachment.file.identifier == "no_image" ||  t.attachment.file.identifier == nil %>
+               <td><%= link_to image_tag("/uploads/image/img-not-found-200x180"), 
+                                         "/uploads/image/img-not-found.png" %></td>
+            <% else %>
+               <td><%= link_to image_tag(t.attachment_url(:thumb)), t.attachment_url %></td>
+            <% end %>
+            <td><%= button_to "Delete", t, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete the image?" %></td>
+         </tr>
+         <% end %>
+   </tbody>
+   
+</table>
+</html>

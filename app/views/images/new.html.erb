@@ -1,0 +1,31 @@
+<% if !@Image.errors.empty? %>
+   <div class = "alert alert-error">
+      
+      <ul>
+         <% @Image.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+         <% end %>
+      </ul>
+      
+   </div>
+<% end %>
+
+<div class = "well">
+   <%= form_for @Image, html: { multipart: true } do |f| %>
+      <div class = "field">
+         <%= f.label :body_type %>
+         <%= f.select :body_type, options_for_select(["Comet",
+                                                      "Meteor",
+                                                      "Galaxy",
+                                                      "Satellite",
+                                                      "Star"]) %>
+      </div>
+
+      <div class = "field" >
+         <%= f.label :attachment %>
+         <%= f.file_field :attachment %>
+      </div>
+      
+      <%= f.submit "Save", class: "btn btn-primary" %>
+   <% end %>
+</div>
