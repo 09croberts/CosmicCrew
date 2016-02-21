@@ -6,6 +6,21 @@
 
 <br />
 
+<%= form_tag images_path, :method => 'get' do %>
+   <%= select_tag :search_btype, options_for_select([["Select body type", ""],
+                                                "Comet",
+                                                "Meteor",
+                                                "Not Defined",
+                                                "Galaxy",
+                                                "Satellite",
+                                                "Star"], 
+                                                params[:search_btype]) %><br />
+   <%= date_field_tag :search_date, params[:search_date] %><br />
+   <%= submit_tag "Search" %>
+<% end %>
+
+<br />
+
 <%= link_to "New Image", new_image_path, class: "btn btn-primary" %>
 <br />
 <br />
@@ -15,6 +30,7 @@
       <tr>
          <th>Body Type</th>
          <th>Image</th>
+         <th>Upload date</th>
          <th> </th>
       </tr>
    </thead>
@@ -31,6 +47,9 @@
             <% else %>
                <td><%= link_to image_tag(t.attachment_url(:thumb)), t.attachment_url %></td>
             <% end %>
+
+            <td><%= t.created_at %></td>
+
             <td><%= button_to "Delete", t, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete the image?" %></td>
          </tr>
          <% end %>

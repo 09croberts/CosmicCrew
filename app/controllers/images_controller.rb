@@ -1,6 +1,7 @@
 class ImagesController < ApplicationController
   def index
-  	@Images = Image.all
+    @ImagesAll = Image.all
+    @Images = Image.search(params[:search_btype])
   end
 
   def new
