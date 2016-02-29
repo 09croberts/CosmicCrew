@@ -34,9 +34,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'carrierwave'
 gem 'bootstrap-sass'
+gem 'bootstrap-datepicker-rails'
 gem 'mini_magick'
 
 group :development, :test do
+  gem 'rails_layout'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 end

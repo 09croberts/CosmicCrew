@@ -3,7 +3,7 @@
       <%= flash[:notice] %>
    </div>
 <% end %>
-
+<%= params.inspect %>
 <br />
 
 <%= form_tag images_path, :method => 'get' do %>
@@ -15,7 +15,8 @@
                                                 "Satellite",
                                                 "Star"], 
                                                 params[:search_btype]) %><br />
-   <%= date_field_tag :search_date, params[:search_date] %><br />
+   <%= date_field_tag :search_date, params[:search_date], 
+                     "data-provide" => 'datepicker' %><br />
    <%= submit_tag "Search" %>
 <% end %>
 

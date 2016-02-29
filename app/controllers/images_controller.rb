@@ -1,7 +1,8 @@
 class ImagesController < ApplicationController
   def index
     @ImagesAll = Image.all
-    @Images = Image.search(params[:search_btype])
+    @Images = Image.search_btype(params[:search_btype])
+    @Images = @Images.search_date(params[:search_date])
   end
 
   def new
@@ -12,7 +13,7 @@ class ImagesController < ApplicationController
   	@Image = Image.new(image_params)
 
   	if @Image.save
-  		redirect_to images_path, notice: "The Image has been uploaded"
+  		redirect_to images_path, notice: "The image has been uploaded"
   	else
   		render new
   	end
