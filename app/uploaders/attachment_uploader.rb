@@ -19,6 +19,8 @@ class AttachmentUploader < CarrierWave::Uploader::Base
 
   #Limit on size
 
+  process :store_dimensions
+
   # Create different versions of your uploaded files:
   version :thumb do
     process resize_to_fit: [100, 100]
@@ -26,6 +28,14 @@ class AttachmentUploader < CarrierWave::Uploader::Base
 
   def extension_white_list
     %w(png jpeg jpg bmp gif)
+  end
+
+  private
+
+  def store_dimensions
+    if file && model
+      model.width, model.height = ::MiniMagick::Image.open(file.file)[:dimensions]
+    end
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

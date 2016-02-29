@@ -6,7 +6,10 @@
 <%= params.inspect %>
 <br />
 
+<h3>Search</h3>
+
 <%= form_tag images_path, :method => 'get' do %>
+   <text>Object:</text>
    <%= select_tag :search_btype, options_for_select([["Select body type", ""],
                                                 "Comet",
                                                 "Meteor",
@@ -15,7 +18,9 @@
                                                 "Satellite",
                                                 "Star"], 
                                                 params[:search_btype]) %><br />
-   <%= date_field_tag :search_date, params[:search_date], 
+
+   <text>Date:</text>
+   <%= date_field_tag :search_date, params[:search_date],
                      "data-provide" => 'datepicker' %><br />
    <%= submit_tag "Search" %>
 <% end %>
@@ -31,6 +36,8 @@
       <tr>
          <th>Body Type</th>
          <th>Image</th>
+         <th>Width</th>
+         <th>Height</th>
          <th>Upload date</th>
          <th> </th>
       </tr>
@@ -48,6 +55,9 @@
             <% else %>
                <td><%= link_to image_tag(t.attachment_url(:thumb)), t.attachment_url %></td>
             <% end %>
+
+            <td><%= t.width %></td>
+            <td><%= t.height %></td>
 
             <td><%= t.created_at %></td>
 
