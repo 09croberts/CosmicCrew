@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-
-<h1>Test image site</h1>
 <html>
-<head>
-  <title>Imagehw</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-	<body>
-      <div class = "container" style = "padding-top:20px;">
-         <%= yield %>
-      </div>
-   </body>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Imagehw" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Imagehw" %>">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
+    <main role="main">
+       <%= render 'layouts/messages' %>
+       <%= yield %>
+    </main>
+  </body>
+</html>

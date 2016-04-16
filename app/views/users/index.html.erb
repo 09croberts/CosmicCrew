@@ -1,0 +1,11 @@
+<h1>Account list</h1>
+<p>View and modify user accounts</p>
+
+<% @users.each do |user| %>
+	<%= link_to user.email, user %>
+	<%= form_for(user) do |f| %>
+		<%= f.select(:role, User.roles.keys.map{|role|[role.titleize, role]}) %>
+		<%= f.submit 'change role', :class => 'button-xs' %>
+	<% end %>
+	<br />
+<% end %>

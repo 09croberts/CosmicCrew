@@ -36,6 +36,9 @@ gem 'carrierwave'
 gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
 gem 'mini_magick'
+gem 'devise'
+gem 'devise_roles'
+gem 'pundit'
 
 group :development, :test do
   gem 'rails_layout'
