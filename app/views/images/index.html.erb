@@ -39,6 +39,7 @@
          <th>Width</th>
          <th>Height</th>
          <th>Upload date</th>
+         <th>User email</th>
          <th> </th>
       </tr>
    </thead>
@@ -60,6 +61,7 @@
             <td><%= t.height %></td>
 
             <td><%= t.created_at %></td>
+            <td><%= t.user.email %></td>
 
             <td><%= button_to "Delete", t, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete the image?" %></td>
          </tr>
