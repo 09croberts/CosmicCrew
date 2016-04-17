@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 	enum role: [:guest, :member, :admin]
 	after_initialize :set_default_role, :if => :new_record?
 	has_many :images
+	has_many :comments
 
 	def set_default_role
 		self.role ||= :guest

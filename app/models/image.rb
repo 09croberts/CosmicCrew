@@ -1,6 +1,7 @@
 class Image < ActiveRecord::Base
 	mount_uploader :attachment, AttachmentUploader
 	belongs_to :user
+	has_many :comments
 	validates :body_type, presence: true
 	validates :user_id, presence: true
 

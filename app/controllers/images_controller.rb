@@ -13,6 +13,8 @@ class ImagesController < ApplicationController
 
   def show
     @Image = Image.find(params[:id])
+    @Comments = @Image.comments
+
   end
 
   def create

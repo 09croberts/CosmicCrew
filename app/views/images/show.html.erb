@@ -7,7 +7,22 @@
     <%= image_tag(@Image.attachment_url(:downscaled)) %>
 <% end %>
 
+<br />
+<%= link_to "View Raw", @Image.attachment_url, class: "btn btn-primary" %>
+<br />
+<br />
+
 <p>Type of object: <%= @Image.body_type %></p>
 <p>Uploaded at: <%= @Image.created_at %></p>
 <p>Dimensions: <%= @Image.width %>x<%= @Image.height %></p>
 <p>Uploader email: <%= @Image.user.email %></p>
+
+<hr>
+
+<h3>Post a comment</h3>
+<h3>Comments</h3>
+<% @Comments.each do |t| %>
+	<h5><%= t.user.email %></h5>
+	<p><%= t.text %></p>
+	<br />
+<% end %>
