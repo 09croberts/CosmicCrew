@@ -11,12 +11,16 @@ class ImagesController < ApplicationController
   	@Image = Image.new
   end
 
+  def show
+    @Image = Image.find(params[:id])
+  end
+
   def create
   	@Image = Image.new(image_params)
     @Image.user_id = current_user.id
 
   	if @Image.save
-  		redirect_to images_path, notice: "The image has been uploaded"
+  		redirect_to @Image, notice: "The image has been uploaded"
   	else
   		render new
   	end

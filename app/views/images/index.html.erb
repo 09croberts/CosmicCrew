@@ -36,10 +36,6 @@
       <tr>
          <th>Body Type</th>
          <th>Image</th>
-         <th>Width</th>
-         <th>Height</th>
-         <th>Upload date</th>
-         <th>User email</th>
          <th> </th>
       </tr>
    </thead>
@@ -54,14 +50,9 @@
                <td><%= link_to image_tag("/uploads/image/img-not-found-200x180"), 
                                          "/uploads/image/img-not-found.png" %></td>
             <% else %>
-               <td><%= link_to image_tag(t.attachment_url(:thumb)), t.attachment_url %></td>
+               <td><%= link_to image_tag(t.attachment_url(:thumb)), t %>
+               <!--<td><%= link_to image_tag(t.attachment_url(:thumb)), t.attachment_url %></td>-->
             <% end %>
-
-            <td><%= t.width %></td>
-            <td><%= t.height %></td>
-
-            <td><%= t.created_at %></td>
-            <td><%= t.user.email %></td>
 
             <td><%= button_to "Delete", t, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete the image?" %></td>
          </tr>
