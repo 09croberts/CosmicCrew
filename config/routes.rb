@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get 'users/index'
-
   get 'users/show'
+
+  get 'about' => 'static#about'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
   resources :users
 
   # You can have the root of your site routed with "root"
-  root 'images#index'
+  root 'static#home'
 
   #Image not found
 
