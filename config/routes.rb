@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  resources :images, only: [:index, :new, :create, :destroy, :show]
+  resources :images, only: [:index, :new, :create, :destroy, :show] do
+    resources :comments
+  end
   resources :users
 
   # You can have the root of your site routed with "root"

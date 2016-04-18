@@ -10,6 +10,10 @@ class ImagePolicy
 		true
 	end
 
+	def show?
+		true
+	end
+
 	def new?
 		@current_user.admin? or @current_user.member?
 	end

@@ -1,5 +1,6 @@
 class ImagesController < ApplicationController
   before_action :authenticate_user!, :except => [:index, :show]
+  after_action :verify_authorized, :except => [:index, :show]
 
   def index
     @ImagesAll = Image.all
@@ -14,7 +15,6 @@ class ImagesController < ApplicationController
 
   def show
     @Image = Image.find(params[:id])
-    @Comments = @Image.comments
   end
 
   def create
@@ -33,12 +33,13 @@ class ImagesController < ApplicationController
   	@Image = Image.find(params[:id])
     authorize @Image
 
+    @Image.comments.destroy_all
   	@Image.destroy
   	redirect_to images_path, notice: "The image has been deleted"
   end
 
   private
-  	def image_params
-  	params.require(:image).permit(:body_type, :attachment)
-  end
+    def image_params
+      params.require(:image).permit(:body_type, :attachment)
+    end
 end
