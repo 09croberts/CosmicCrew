@@ -3,7 +3,7 @@ class ImagePolicy
 
 	def initialize(current_user, model)
 		@current_user = current_user
-		@user = model
+		@Image = model
 	end
 
 	def index?
@@ -19,6 +19,6 @@ class ImagePolicy
 	end
 
 	def destroy?
-		@current_user.admin?
+		@current_user.admin? or @Image.user == @current_user
 	end
 end

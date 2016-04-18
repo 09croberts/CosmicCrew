@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  #before_action :authenticate_user!, :except => [:index]
+  before_action :authenticate_user!, :except => [:index, :show]
 
   def index
     @ImagesAll = Image.all
@@ -9,17 +9,18 @@ class ImagesController < ApplicationController
 
   def new
   	@Image = Image.new
+    authorize @Image
   end
 
   def show
     @Image = Image.find(params[:id])
     @Comments = @Image.comments
-
   end
 
   def create
   	@Image = Image.new(image_params)
     @Image.user_id = current_user.id
+    authorize @Image
 
   	if @Image.save
   		redirect_to @Image, notice: "The image has been uploaded"
@@ -30,6 +31,7 @@ class ImagesController < ApplicationController
 
   def destroy
   	@Image = Image.find(params[:id])
+    authorize @Image
 
   	@Image.destroy
   	redirect_to images_path, notice: "The image has been deleted"
