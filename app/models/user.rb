@@ -4,6 +4,11 @@ class User < ActiveRecord::Base
 	has_many :images
 	has_many :comments
 
+	validates :email, presence: true
+	validates :first_name, presence: true
+	validates :last_name, presence: true
+	validates :dob, presence: true
+
 	def set_default_role
 		self.role ||= :guest
 	end

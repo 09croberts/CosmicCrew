@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-	before_action :authenticate_user!
-	after_action :verify_authorized
+	before_action :authenticate_user!, :except => [:create]
+	after_action :verify_authorized, :except => [:create]
 
   def index
   	@users = User.all
@@ -23,8 +23,20 @@ class UsersController < ApplicationController
   	end
   end
 
+  def create
+    @user = User.new(sign_up_params)
+    if @user.save
+      redirect_to root_path, notice: "Signed up"
+    end
+  end
+
   private
   	def secure_params
   		params.require(:user).permit(:role)
   	end
+
+    def sign_up_params
+      params.require(:user).permit(:email, :first_name, :last_name, :dob,
+                                    :password, :password_confirmation)
+    end
 end
