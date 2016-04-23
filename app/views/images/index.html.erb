@@ -1,8 +1,4 @@
-<!-- <% if !flash[:notice].blank? %>
-   <div class = "alert alert-info">
-      <%= flash[:notice] %>
-   </div>
-<% end %>
+<!--
 <%= params.inspect %>
 <br /> -->
 
@@ -50,7 +46,7 @@
                <td><%= link_to image_tag("/uploads/image/img-not-found-200x180"), 
                                          "/uploads/image/img-not-found.png" %></td>
             <% else %>
-               <td><%= link_to image_tag(t.attachment_url(:thumb)), t %>
+               <td><%= link_to image_tag(t.attachment_url(:thumb)), image_show_path(t) %>
                <!--<td><%= link_to image_tag(t.attachment_url(:thumb)), t.attachment_url %></td>-->
             <% end %>
 
@@ -58,6 +54,30 @@
          </tr>
          <% end %>
    </tbody>
-   
 </table>
+
+<nav>
+   <ul class = "pagination">
+   <li class = "page-item">
+      <a class = "page-link" href = "#" aria-label "Previous">
+         <span aria-hidden = "true">&laquo;</span>
+         <span class = "sr-only">Previou</span>
+      </a>
+   </li>
+
+   <li class = "page-item"><%= link_to("1", image_gallery_path(1), class: "page-link") %></li>
+   <li class = "page-item"><%= link_to("2", image_gallery_path(2), class: "page-link") %></li>
+   <li class = "page-item"><%= link_to("3", image_gallery_path(3), class: "page-link") %></li>
+   <li class = "page-item"><%= link_to("4", image_gallery_path(4), class: "page-link") %></li>
+
+   <li class = "page-item">
+      <a class = "page-link" href = "#" aria-label "Next">
+         <span aria-hidden = "true">&raquo;</span>
+         <span class = "sr-only">Next</span>
+      </a>
+   </li>
+   </ul>
+</nav>
+
+
 </html>

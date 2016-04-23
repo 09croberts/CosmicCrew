@@ -6,9 +6,12 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  resources :images, only: [:index, :new, :create, :destroy, :show] do
+  resources :images, only: [:index, :new, :create, :destroy] do
     resources :comments
   end
+
+  get 'images/:id' => 'images#index', as: :image_gallery
+  get 'images/show/:id' => 'images#show', as: :image_show
 
   devise_for :users, :controllers => { registrations: 'registrations'}
   resources :users, except: :create
