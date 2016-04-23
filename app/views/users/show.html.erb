@@ -1,2 +1,13 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h2><%= @user.first_name + " " + @user.last_name %></h2>
+
+<p><b>Email: </b><%= @user.email %></p>
+<p><b>Date of birth: </b><%= @user.dob.strftime("%d/%m/%Y") %>
+<p><b>Images uploaded: </b><%= @user.images.count.to_s %>
+<p><b>Comments made: </b><%= @user.comments.count.to_s %>
+<p><b>Join date: </b><%= @user.created_at.strftime("%d/%m/%Y") %></p>
+<p><b>Last login at: </b><%= @user.last_sign_in_at.to_s %></p>
+
+<br/>
+<% if current_user == @user %>
+	<%= link_to 'Edit details', edit_user_registration_path, class: 'btn btn-primary' %>
+<% end %>

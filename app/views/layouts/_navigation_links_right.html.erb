@@ -4,7 +4,7 @@
 		<a href = "#" data-toggle = "dropdown" class = "dropdown-toggle">Profile<b class = "caret"></b></a>
 
 		<ul class = "dropdown-menu">
-			<li><%= link_to 'View account', edit_user_registration_path %></li>
+			<li><%= link_to 'View account', user_path(current_user) %></li>
 
 			<% if current_user.admin? %>
 				<li><%= link_to 'Manage accounts', users_path %>

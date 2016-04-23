@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-	before_action :authenticate_user!, :except => [:create]
-	after_action :verify_authorized, :except => [:create]
+	before_action :authenticate_user!, :except => [:create, :show]
+	after_action :verify_authorized, :except => [:create, :show]
 
   def index
   	@users = User.all
