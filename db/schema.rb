@@ -11,15 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423124808) do
-
-# Could not dump table "Images" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+ActiveRecord::Schema.define(version: 20160423205914) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "image_id"
     t.integer  "user_id"
     t.string   "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string   "body_type"
+    t.integer  "width"
+    t.integer  "height"
+    t.string   "attachment"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

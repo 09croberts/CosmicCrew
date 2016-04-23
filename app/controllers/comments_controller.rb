@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
 		authorize @Comment
 		@Comment.save
 
-		redirect_to image_path(@Image)
+		redirect_to image_show_path(@Image)
 	end
 
 	def destroy
@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
 		@Comment = Comment.find(params[:id])
 		authorize @Comment
 		@Comment.destroy
-		redirect_to image_path(@Image)
+		redirect_to image_show_path(@Image)
 	end
 
 	private
