@@ -59,11 +59,10 @@
       <li class = "page-item">
       <% previous_page = page.to_i - 1 %>
    <% end %>
-      <a class = "page-link" href = <%= image_gallery_path(previous_page) %>
-          aria-label "Previous">
-         <span aria-hidden = "true">&laquo;</span>
-         <span class = "sr-only">Previous</span>
-      </a>
+      <%= link_to("<", image_gallery_path(previous_page,
+                     :search_btype => params[:search_btype],
+                     :search_date => params[:search_date]), 
+                     class: "page-link") %>
    </li>
 
    <!-- Show current page -->
@@ -76,12 +75,11 @@
    <% else %>
       <li class = "page-item">
       <% next_page = page.to_i + 1 %>
-   <% end %>
-      <a class = "page-link" href = <%= image_gallery_path(next_page) %>
-          aria-label "Next">
-         <span aria-hidden = "true">&raquo;</span>
-         <span class = "sr-only">Next</span>
-      </a>
+   <% end %>  
+      <%= link_to(">", image_gallery_path(next_page,
+                     :search_btype => params[:search_btype],
+                     :search_date => params[:search_date]),
+                     class: "page-link") %>
    </li>
    </ul>
 </nav>

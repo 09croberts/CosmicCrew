@@ -21,3 +21,4 @@ $.fn.datepicker.defaults.format = 'dd/mm/yyyy';
 $.fn.datepicker.defaults.autoclose = 'true';
 $.fn.datepicker.defaults.clearBtn = 'true';
 $.fn.datepicker.defaults.title = 'Select date';
+$.fn.datepicker.defaults.startView = 'decade';
