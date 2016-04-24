@@ -10,8 +10,8 @@
    </div>
 <% end %>
 <div class = "well">
-   <%= form_for @Image, html: { multipart: true } do |f| %>
-      <div class = "field">
+   <%= form_for @Image, html: { multipart: true, class: "" } do |f| %>
+      <div class = "form-group">
          <%= f.label :body_type %>
          <%= f.select :body_type, options_for_select(["Comet",
                                                       "Meteor",
@@ -20,7 +20,17 @@
                                                       "Star"]) %>
       </div>
 
-      <div class = "field" >
+      <div class = "form-group">
+         <%= f.label :title %>
+         <%= f.text_field :title %>
+      </div>
+
+      <div class = "formfield">
+         <%= f.label :description %>
+         <%= f.text_area :description %>
+      </div>
+
+      <div class = "form-group">
          <%= f.label :attachment %>
          <%= f.file_field :attachment %>
       </div>

@@ -1,24 +1,26 @@
-<h3>Image</h3>
+<h3><%= @Image.title %></h3>
 <br />
 
 <% if @Image.attachment.file.identifier == "no_image" ||  @Image.attachment.file.identifier == nil %>
 	<%= image_tag("/uploads/image/img-not-found.png") %>
 <% else %>
     <%= image_tag(@Image.attachment_url(:downscaled)) %>
+    <br />
+	<%= link_to "View Raw", @Image.attachment_url, class: "btn btn-primary" %>
 <% end %>
 
-<br />
-<%= link_to "View Raw", @Image.attachment_url, class: "btn btn-primary" %>
 <% if user_signed_in? %>
 <% if current_user.admin? or current_user == @Image.user %>
 	<%= button_to "Delete", @Image, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete the image?" %>
 <% end %><% end %>
 <br /><br />
 
+<h3><b>Information</b></h3>
 <p>Type of object: <%= @Image.body_type %></p>
-<p>Uploaded at: <%= @Image.created_at %></p>
 <p>Dimensions: <%= @Image.width %>x<%= @Image.height %></p>
-<p>Uploaded by: <%= @Image.user.first_name + " " + @Image.user.last_name %></p>
+<p>Uploaded by: <%= @Image.user.first_name + " " + @Image.user.last_name %></p><br/>
+<p>Uploaded at: <%= @Image.created_at %></p>
+<p><%= @Image.description %></p>
 
 <hr>
 
