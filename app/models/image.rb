@@ -13,9 +13,25 @@ class Image < ActiveRecord::Base
 		end
 	end
 
-	def self.search_date(search)
+	def self.search_date_start(search)
 		if search && !search.empty?
 			where(["date >= ?", search.to_date])
+		else
+			all
+		end
+	end
+
+	def self.search_date_end(search)
+		if search && !search.empty?
+			where(["date <= ?", search.to_date])
+		else
+			all
+		end
+	end
+
+	def self.search_location(search)
+		if search && !search.empty?
+			where(["location LIKE ?", "%#{search}%"])
 		else
 			all
 		end

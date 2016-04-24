@@ -1,31 +1,11 @@
-<h3>Search</h3>
-
-<%= form_tag image_gallery_path(1), :method => 'get' do %>
-   <text>Object:</text>
-   <%= select_tag :search_btype, options_for_select([["Select body type", ""],
-                                                "Comet",
-                                                "Meteor",
-                                                "Not Defined",
-                                                "Galaxy",
-                                                "Satellite",
-                                                "Star"], 
-                                                params[:search_btype]) %><br />
-
-   <text>Date:</text>
-   <%= date_field_tag :search_date, params[:search_date],
-                     "data-provide" => 'datepicker' %><br />
-   <%= submit_tag "Search" %>
-<% end %>
-
 <!-- Photo gallery grid -->
+<div class = "wrapper-element">
 
-<br />
-<div align = "center">
-<h3 class>Gallery</h3>
-<div id = "grid">
+<h3 align = "center">Gallery</h3>
+<div class = "grid">
    <% @Images.each do |t| %>
       <div class = "grid-element" >
-         <p><b><%= t.title %></b></p>
+         <p align = "center"><b><%= t.title %></b></p>
          <% if t.attachment.file.identifier == "no_image" ||  t.attachment.file.identifier == nil %>
             <%= link_to image_tag("/uploads/image/img-not-found-200x180"), 
                                          image_show_path(t) %>
@@ -36,10 +16,7 @@
    <% end %>
 </div>
 
-<div class = "clear"></div>
-
 <!-- Working out variables for pagination -->
-
 <% if params.has_key?(:id) %>
    <% page = params[:id] %>
 <% else %>
@@ -48,6 +25,7 @@
 
 <% max_pages = (@AvailableImages.to_f/9).ceil %>
 
+<div>
 <nav>
    <ul class = "pagination">
 
@@ -61,7 +39,9 @@
    <% end %>
       <%= link_to("<", image_gallery_path(previous_page,
                      :search_btype => params[:search_btype],
-                     :search_date => params[:search_date]), 
+                     :search_date_start => params[:search_date_start],
+                     :search_date_end => params[:search_date_end],
+                     :search_location => params[:search_location]), 
                      class: "page-link") %>
    </li>
 
@@ -84,3 +64,36 @@
    </ul>
 </nav>
 </div>
+</div><!-- wrapper element end -->
+
+<!-- Searching the database -->
+
+<div class = "wrapper-element">
+<h3 align = "center">Search</h3>
+<%= form_tag image_gallery_path(1), :method => 'get' do %>
+   <text><b>Object:</b></text>
+   <%= select_tag :search_btype, options_for_select([["Select body type", ""],
+                                                "Comet",
+                                                "Meteor",
+                                                "Not Defined",
+                                                "Galaxy",
+                                                "Satellite",
+                                                "Star"], 
+                                                params[:search_btype]) %><br/>
+
+   <text><b>Date:</b></text><br/>
+   <text>From</text>
+   <%= date_field_tag :search_date_start, params[:search_date_start],
+                        :size => 8,
+                        "data-provide" => 'datepicker' %>
+   <text>to</text>
+   <%= date_field_tag :search_date_end, params[:search_date_end],
+                        :size => 8,
+                        "data-provide" => 'datepicker' %><br/>
+
+   <text><b>Location:</b></text>
+   <%= text_field_tag :search_location, params[:search_location] %><br/>
+
+   <%= submit_tag "Search" %>
+<% end %>
+</div><!-- wrapper element end -->

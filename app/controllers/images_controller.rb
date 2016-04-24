@@ -11,7 +11,9 @@ class ImagesController < ApplicationController
 
     @ImagesAll = Image.all
     @Images = Image.search_btype(params[:search_btype])
-    @Images = @Images.search_date(params[:search_date])
+    @Images = @Images.search_location(params[:search_location])
+    @Images = @Images.search_date_start(params[:search_date_start])
+    @Images = @Images.search_date_end(params[:search_date_end])
 
     @AvailableImages = @Images.count
     @Images = @Images.last(@Images.count - (9 * (id - 1)))
