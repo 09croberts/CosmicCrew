@@ -23,7 +23,7 @@ class ImagesController < ApplicationController
     authorize @Image
 
   	if @Image.save
-  		redirect_to @Image, notice: "The image has been uploaded"
+  		redirect_to image_show_path(@Image), notice: "The image has been uploaded"
   	else
   		render new
   	end
@@ -40,6 +40,6 @@ class ImagesController < ApplicationController
 
   private
     def image_params
-      params.require(:image).permit(:body_type, :attachment, :title, :description)
+      params.require(:image).permit(:body_type, :attachment, :title, :description, :location, :date)
     end
 end

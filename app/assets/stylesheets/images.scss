@@ -5,3 +5,24 @@
 .formfield * {
 	vertical-align: top;
 }
+
+#grid {
+	width: 700px;
+}
+
+.clear {
+	clear: both;
+}
+
+.grid-element {
+	width: 200px;
+	float: left;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 20px;
+}
+
+#wrapper {
+	width: 100%;
+	margin: 0 auto;
+}

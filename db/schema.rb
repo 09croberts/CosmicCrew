@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423214258) do
+ActiveRecord::Schema.define(version: 20160424133737) do
 
   create_table "Images", force: :cascade do |t|
     t.string   "body_type",   default: "Not specified"
@@ -19,10 +19,12 @@ ActiveRecord::Schema.define(version: 20160423214258) do
     t.integer  "height"
     t.string   "attachment",  default: "no_image"
     t.integer  "user_id"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.string   "title"
     t.string   "description"
+    t.string   "location",    default: "Unknown location"
+    t.date     "date"
   end
 
   create_table "comments", force: :cascade do |t|
