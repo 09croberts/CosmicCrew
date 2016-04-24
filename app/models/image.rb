@@ -6,7 +6,7 @@ class Image < ActiveRecord::Base
 	validates :user_id, presence: true
 
 	def self.search_btype(search)
-		if search
+		if !search.empty?
 			where(["body_type LIKE ?", "%#{search}%"])
 		else
 			all
@@ -14,8 +14,7 @@ class Image < ActiveRecord::Base
 	end
 
 	def self.search_date(search)
-		puts search
-		if search
+		if !search.empty?
 			where(["created_at >= ?", search.to_time])
 		else
 			all
