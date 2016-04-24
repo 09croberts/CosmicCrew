@@ -3,9 +3,19 @@ class ImagesController < ApplicationController
   after_action :verify_authorized, :except => [:index, :show]
 
   def index
+    if params.has_key?(:id)
+      id = params[:id].to_i
+    else
+      id = 1
+    end
+
     @ImagesAll = Image.all
     @Images = Image.search_btype(params[:search_btype])
     @Images = @Images.search_date(params[:search_date])
+
+    @AvailableImages = @Images.count
+    @Images = @Images.last(@Images.count - (9 * (id - 1)))
+    @Images = @Images.first(9)
   end
 
   def new

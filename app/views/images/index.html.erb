@@ -17,18 +17,20 @@
    <%= submit_tag "Search" %>
 <% end %>
 
+<!-- Photo gallery grid -->
+
 <br />
 <div align = "center">
-<h3>Gallery</h3>
+<h3 class>Gallery</h3>
 <div id = "grid">
    <% @Images.each do |t| %>
       <div class = "grid-element" >
+         <p><b><%= t.title %></b></p>
          <% if t.attachment.file.identifier == "no_image" ||  t.attachment.file.identifier == nil %>
             <%= link_to image_tag("/uploads/image/img-not-found-200x180"), 
                                          image_show_path(t) %>
          <% else %>
             <%= link_to image_tag(t.attachment_url(:thumb)), image_show_path(t) %>
-            <!--<td><%= link_to image_tag(t.attachment_url(:thumb)), t.attachment_url %>-->
          <% end %>
       </div>
    <% end %>
@@ -36,37 +38,7 @@
 
 <div class = "clear"></div>
 
-
-<!--
-<table class = "table table-bordered table-striped">
-   <thead>
-      <tr>
-         <th>Body Type</th>
-         <th>Image</th>
-         <th> </th>
-      </tr>
-   </thead>
-   
-   <tbody>
-      <% @Images.each do |t| %>
-         
-         <tr>
-            <td><%= t.body_type %></td>
-
-            <% if t.attachment.file.identifier == "no_image" ||  t.attachment.file.identifier == nil %>
-               <td><%= link_to image_tag("/uploads/image/img-not-found-200x180"), 
-                                         image_show_path(t) %></td>
-            <% else %>
-               <td><%= link_to image_tag(t.attachment_url(:thumb)), image_show_path(t) %>
-               <!--<td><%= link_to image_tag(t.attachment_url(:thumb)), t.attachment_url %></td>
-            <% end %>
-
-            <td><%= button_to "Delete", t, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete the image?" %></td>
-         </tr>
-         <% end %>
-   </tbody>
-</table>
--->
+<!-- Working out variables for pagination -->
 
 <% if params.has_key?(:id) %>
    <% page = params[:id] %>
@@ -74,7 +46,7 @@
    <% page = "1" %>
 <% end %>
 
-<% max_pages = (@Images.count.to_f/9).ceil %>
+<% max_pages = (@AvailableImages.to_f/9).ceil %>
 
 <nav>
    <ul class = "pagination">

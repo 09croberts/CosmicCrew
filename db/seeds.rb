@@ -79,3 +79,38 @@ Image.create(body_type: "Galaxy", width: 300, height: 200,
 			location: "Clevedon", date: "2016-04-20",
 				title: "Andromeda", description: "Best shot of andromeda yet!",
 				user_id: 2)
+
+Image.create(body_type: "Galaxy", width: 300, height: 200,
+			location: "Clevedon", date: "2016-04-20",
+				title: "Andromeda", description: "Best shot of andromeda yet!",
+				user_id: 2)
+
+Image.create(body_type: "Galaxy", width: 300, height: 200,
+			location: "Clevedon", date: "2016-04-20",
+				title: "Andromeda", description: "Best shot of andromeda yet!",
+				user_id: 2)
+
+Image.create(body_type: "Galaxy", width: 300, height: 200,
+			location: "Clevedon", date: "2016-04-20",
+				title: "Andromeda", description: "Best shot of andromeda yet!",
+				user_id: 2)
+
+Image.create(body_type: "Galaxy", width: 300, height: 200,
+			location: "Clevedon", date: "2016-04-20",
+				title: "Andromeda", description: "Best shot of andromeda yet!",
+				user_id: 2)
+
+Image.create(body_type: "Galaxy", width: 300, height: 200,
+			location: "Clevedon", date: "2016-04-20",
+				title: "Second page test", description: "Best shot of andromeda yet!",
+				user_id: 2)
+
+Image.create(body_type: "Galaxy", width: 300, height: 200,
+			location: "Clevedon", date: "2016-04-20",
+				title: "Andromeda", description: "Best shot of andromeda yet!",
+				user_id: 2)
+
+Image.create(body_type: "Galaxy", width: 300, height: 200,
+			location: "Clevedon", date: "2016-04-20",
+				title: "Third page test", description: "Best shot of andromeda yet!",
+				user_id: 2)
