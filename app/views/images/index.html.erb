@@ -29,21 +29,29 @@
 <nav>
    <ul class = "pagination">
 
+
    <!-- Previous page -->
    <% if page == "1" %>
       <li class = "page-item disabled">
-      <% previous_page = 1 %>
+         <span class = "page-link"><<</span>
+         <span class = "page-link"><</span>
+      </li>
    <% else %>
       <li class = "page-item">
-      <% previous_page = page.to_i - 1 %>
-   <% end %>
-      <%= link_to("<", image_gallery_path(previous_page,
+         <%= link_to("<<", image_gallery_path(1,
                      :search_btype => params[:search_btype],
                      :search_date_start => params[:search_date_start],
                      :search_date_end => params[:search_date_end],
                      :search_location => params[:search_location]), 
                      class: "page-link") %>
-   </li>
+         <%= link_to("<", image_gallery_path(page.to_i - 1,
+                     :search_btype => params[:search_btype],
+                     :search_date_start => params[:search_date_start],
+                     :search_date_end => params[:search_date_end],
+                     :search_location => params[:search_location]), 
+                     class: "page-link") %>
+      </li>
+   <% end %>
 
    <!-- Show current page -->
    <li class = "page-item active"><%= link_to(page, image_gallery_path(page.to_i), class: "page-link") %></li>
@@ -51,16 +59,25 @@
    <!-- Next page -->
    <% if page == max_pages.to_s %>
       <li class = "page-item disabled">
-      <% next_page = max_pages %>
+         <span class = "page-link">></span>
+         <span class = "page-link">>></span>
+      </li>
    <% else %>
       <li class = "page-item">
-      <% next_page = page.to_i + 1 %>
-   <% end %>  
-      <%= link_to(">", image_gallery_path(next_page,
+         <%= link_to(">", image_gallery_path(page.to_i + 1,
                      :search_btype => params[:search_btype],
-                     :search_date => params[:search_date]),
+                     :search_date_start => params[:search_date_start],
+                     :search_date_end => params[:search_date_end],
+                     :search_location => params[:search_location]), 
                      class: "page-link") %>
-   </li>
+         <%= link_to(">>", image_gallery_path(max_pages,
+                     :search_btype => params[:search_btype],
+                     :search_date_start => params[:search_date_start],
+                     :search_date_end => params[:search_date_end],
+                     :search_location => params[:search_location]), 
+                     class: "page-link") %>
+      </li>
+   <% end %>  
    </ul>
 </nav>
 </div>
@@ -74,10 +91,11 @@
    <text><b>Object:</b></text>
    <%= select_tag :search_btype, options_for_select([["Select body type", ""],
                                                 "Comet",
-                                                "Meteor",
-                                                "Not Defined",
+                                                "Constellation",
                                                 "Galaxy",
+                                                "Meteor",
                                                 "Satellite",
+                                                "Solar Body",
                                                 "Star"], 
                                                 params[:search_btype]) %><br/>
 

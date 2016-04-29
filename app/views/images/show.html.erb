@@ -48,7 +48,7 @@
 
 <% @Image.comments.reverse.drop(1).each do |t| %>
 	<% if t.text != "" %>
-		<p><b><%= @Image.user.first_name + " " + @Image.user.last_name + 
+		<p><b><%= t.user.first_name + " " + t.user.last_name + 
 					" - " + t.created_at.to_s(:db) %></b></p>
 		<p><%= t.text %></p>
 		<br />

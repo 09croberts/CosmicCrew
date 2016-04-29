@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20160424133737) do
 
   create_table "Images", force: :cascade do |t|
-    t.string   "body_type",   default: "Not specified"
+    t.string   "body_type"
     t.integer  "width"
     t.integer  "height"
     t.string   "attachment",  default: "no_image"
