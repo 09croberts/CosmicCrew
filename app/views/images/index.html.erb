@@ -1,117 +1,98 @@
-<!-- Photo gallery grid -->
-<div class = "wrapper-element">
-
-<h3 align = "center">Gallery</h3>
-<div class = "grid">
-   <% @Images.each do |t| %>
-      <div class = "grid-element" >
-         <p align = "center"><b><%= t.title %></b></p>
-         <% if t.attachment.file.identifier == "no_image" ||  t.attachment.file.identifier == nil %>
-            <%= link_to image_tag("/uploads/image/img-not-found-200x180"), 
-                                         image_show_path(t) %>
-         <% else %>
-            <%= link_to image_tag(t.attachment_url(:thumb)), image_show_path(t) %>
-         <% end %>
-      </div>
-   <% end %>
-</div>
-
 <!-- Working out variables for pagination -->
 <% if params.has_key?(:id) %>
-   <% page = params[:id] %>
+<% page = params[:id] %>
 <% else %>
-   <% page = "1" %>
+<% page = "1" %>
 <% end %>
 
 <% max_pages = (@AvailableImages.to_f/9).ceil %>
 
-<div>
-<nav>
-   <ul class = "pagination">
+<!-- Photo gallery grid -->
 
-
-   <!-- Previous page -->
-   <% if page == "1" %>
-      <li class = "page-item disabled">
-         <span class = "page-link"><<</span>
-         <span class = "page-link"><</span>
-      </li>
-   <% else %>
-      <li class = "page-item">
-         <%= link_to("<<", image_gallery_path(1,
-                     :search_btype => params[:search_btype],
-                     :search_date_start => params[:search_date_start],
-                     :search_date_end => params[:search_date_end],
-                     :search_location => params[:search_location]), 
-                     class: "page-link") %>
-         <%= link_to("<", image_gallery_path(page.to_i - 1,
-                     :search_btype => params[:search_btype],
-                     :search_date_start => params[:search_date_start],
-                     :search_date_end => params[:search_date_end],
-                     :search_location => params[:search_location]), 
-                     class: "page-link") %>
-      </li>
-   <% end %>
-
-   <!-- Show current page -->
-   <li class = "page-item active"><%= link_to(page, image_gallery_path(page.to_i), class: "page-link") %></li>
-
-   <!-- Next page -->
-   <% if page == max_pages.to_s %>
-      <li class = "page-item disabled">
-         <span class = "page-link">></span>
-         <span class = "page-link">>></span>
-      </li>
-   <% else %>
-      <li class = "page-item">
-         <%= link_to(">", image_gallery_path(page.to_i + 1,
-                     :search_btype => params[:search_btype],
-                     :search_date_start => params[:search_date_start],
-                     :search_date_end => params[:search_date_end],
-                     :search_location => params[:search_location]), 
-                     class: "page-link") %>
-         <%= link_to(">>", image_gallery_path(max_pages,
-                     :search_btype => params[:search_btype],
-                     :search_date_start => params[:search_date_start],
-                     :search_date_end => params[:search_date_end],
-                     :search_location => params[:search_location]), 
-                     class: "page-link") %>
-      </li>
-   <% end %>  
-   </ul>
-</nav>
+<div class = "row">
+   <h3 class = "col-md-8" align = "center"><b>Gallery</b></h3>
+   <h3 class = "col-md-4">Search</h3>
 </div>
-</div><!-- wrapper element end -->
 
-<!-- Searching the database -->
+<div>
+<% @Images.in_groups_of(3).each_with_index do |row, index| %>
+   <div class = "row">
+      <div class = "col-md-1"></div>
+      <% row.each do |t| %>
+      <div class = "col-md-2"><br/>
+         <% if !t.nil? %>
+         <p align = "center"><b><%= t.title %></b></p>
+         <% if t.attachment.file.identifier == "no_image" ||  t.attachment.file.identifier == nil %>
+         <%= link_to image_tag("/uploads/image/img-not-found-200x180"), 
+         image_show_path(t) %>
+         <% else %>
+         <%= link_to image_tag(t.attachment_url(:thumb)), image_show_path(t) %>
+         <% end %>
+         <% end %>
+      </div>
+      <% end %>
 
-<div class = "wrapper-element">
-<h3 align = "center">Search</h3>
-<%= form_tag image_gallery_path(1), :method => 'get' do %>
-   <text><b>Object:</b></text>
-   <%= select_tag :search_btype, options_for_select([["Select body type", ""],
-                                                "Comet",
-                                                "Constellation",
-                                                "Galaxy",
-                                                "Meteor",
-                                                "Satellite",
-                                                "Solar Body",
-                                                "Star"], 
-                                                params[:search_btype]) %><br/>
+      <% if index == 0 %>
+         <%= render 'images/index_search' %>
+      <% end %>
+   </div>
+   <% end %>
+</div>
 
-   <text><b>Date:</b></text><br/>
-   <text>From</text>
-   <%= date_field_tag :search_date_start, params[:search_date_start],
-                        :size => 8,
-                        "data-provide" => 'datepicker' %>
-   <text>to</text>
-   <%= date_field_tag :search_date_end, params[:search_date_end],
-                        :size => 8,
-                        "data-provide" => 'datepicker' %><br/>
+<div class = "row">
+   <div class = "col-md-8" align = "center">
+      <nav>
+         <ul class = "pagination">
 
-   <text><b>Location:</b></text>
-   <%= text_field_tag :search_location, params[:search_location] %><br/>
+            <!-- Previous page -->
+            <% if page == "1" %>
+            <li class = "page-item disabled">
+               <span class = "page-link"><<</span>
+               <span class = "page-link"><</span>
+            </li>
+            <% else %>
+            <li class = "page-item">
+               <%= link_to("<<", image_gallery_path(1,
+                  :search_btype => params[:search_btype],
+                  :search_date_start => params[:search_date_start],
+                  :search_date_end => params[:search_date_end],
+                  :search_location => params[:search_location]), 
+                  class: "page-link") %>
+               <%= link_to("<", image_gallery_path(page.to_i - 1,
+                  :search_btype => params[:search_btype],
+                  :search_date_start => params[:search_date_start],
+                  :search_date_end => params[:search_date_end],
+                  :search_location => params[:search_location]), 
+                  class: "page-link") %>
+               </li>
+               <% end %>
 
-   <%= submit_tag "Search" %>
-<% end %>
-</div><!-- wrapper element end -->
+               <!-- Show current page -->
+               <li class = "page-item active"><%= link_to(page, image_gallery_path(page.to_i), class: "page-link") %></li>
+
+               <!-- Next page -->
+               <% if page == max_pages.to_s %>
+               <li class = "page-item disabled">
+                  <span class = "page-link">></span>
+                  <span class = "page-link">>></span>
+               </li>
+               <% else %>
+               <li class = "page-item">
+                  <%= link_to(">", image_gallery_path(page.to_i + 1,
+                     :search_btype => params[:search_btype],
+                     :search_date_start => params[:search_date_start],
+                     :search_date_end => params[:search_date_end],
+                     :search_location => params[:search_location]), 
+                     class: "page-link") %>
+                  <%= link_to(">>", image_gallery_path(max_pages,
+                     :search_btype => params[:search_btype],
+                     :search_date_start => params[:search_date_start],
+                     :search_date_end => params[:search_date_end],
+                     :search_location => params[:search_location]), 
+                     class: "page-link") %>
+                  </li>
+                  <% end %>  
+               </ul>
+            </nav>
+         </div>
+      </div>
