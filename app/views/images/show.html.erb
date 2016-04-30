@@ -26,7 +26,11 @@
 
 <hr>
 
-<h3>Comments</h3>
+<% if false %>
+	<h3>No Comments</h3>
+<% else %>
+	<h3>Comments (<%= @Image.comments.count %>)</h3>
+<% end %>
 
 <% if user_signed_in? %>
 <% if not current_user.guest? %>
@@ -46,11 +50,13 @@
 
 <br/>
 
-<% @Image.comments.reverse.drop(1).each do |t| %>
-	<% if t.text != "" %>
+<% @Image.comments.each do |t| %>
+	<% if !t.new_record? %>
+	<% if t.text != ""%>
 		<p><b><%= t.user.first_name + " " + t.user.last_name + 
 					" - " + t.created_at.to_s(:db) %></b></p>
 		<p><%= t.text %></p>
 		<br />
+	<% end %>
 	<% end %>
 <% end %>

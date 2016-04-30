@@ -99,3 +99,11 @@ Image.create(body_type: "Galaxy", location: "Bristol", date: "2016-04-15",
 Image.create(body_type: "Meteor", location: "Bristol", date: "2015-11-10",
 				title: "Meteor entering atmosphere", description: "Unexpectedly saw this and just managed to capture it",
 				attachment: File.open(Rails.root + "pics/Unexpected metor.jpg"), user_id: 1)
+
+#Some example comments
+Comment.create(image_id: 1, user_id: 2, text: "Really nice photo, great job Chris")
+Comment.create(image_id: 1, user_id: 1, text: "Thanks Jacob!")
+
+Comment.create(image_id: 9, user_id: 1, text: "What sort of software did you use to make this?")
+Comment.create(image_id: 9, user_id: 4, text: "A combination of photoshop and Paint.net")
+Comment.create(image_id: 9, user_id: 2, text: "Wow nice work, doubt I could do anything like that")

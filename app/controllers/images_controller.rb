@@ -16,6 +16,7 @@ class ImagesController < ApplicationController
     @Images = @Images.search_date_end(params[:search_date_end])
 
     @AvailableImages = @Images.count
+    @Images = @Images.reverse
     @Images = @Images.last(@Images.count - (9 * (id - 1)))
     @Images = @Images.first(9)
   end
