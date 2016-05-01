@@ -11,7 +11,7 @@
 
 <% if user_signed_in? %>
 <% if current_user.admin? or current_user == @Image.user %>
-	<%= button_to "Delete", @Image, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete the image?" %>
+	<%= button_to "Delete", @Image, method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure that you wish to delete the image?"} %>
 <% end %><% end %>
 <br /><br />
 
@@ -53,8 +53,8 @@
 <% @Image.comments.each do |t| %>
 	<% if !t.new_record? %>
 	<% if t.text != ""%>
-		<p><b><%= t.user.first_name + " " + t.user.last_name + 
-					" - " + t.created_at.to_s(:db) %></b></p>
+		<p><b><%= t.user.first_name + " " + t.user.last_name %>
+			<%= " - " + t.created_at.to_s(:db) %></b></p>
 		<p><%= t.text %></p>
 		<br />
 	<% end %>

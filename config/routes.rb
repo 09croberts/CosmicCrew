@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'users/index'
-  get 'users/show'
+  get 'users/show/:id' => 'users#show', as: :user
 
   get 'about' => 'static#about', as: :about
   # The priority is based upon order of creation: first created -> highest priority.

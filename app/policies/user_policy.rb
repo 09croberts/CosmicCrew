@@ -17,4 +17,8 @@ class UserPolicy
 	def update?
 		@current_user.admin?
 	end
+
+	def destroy?
+		@current_user = @user
+	end
 end
