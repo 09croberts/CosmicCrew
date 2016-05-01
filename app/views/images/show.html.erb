@@ -26,37 +26,4 @@
 
 <hr>
 
-<% if false %>
-	<h3>No Comments</h3>
-<% else %>
-	<h3>Comments (<%= @Image.comments.count %>)</h3>
-<% end %>
-
-<% if user_signed_in? %>
-<% if not current_user.guest? %>
-<%= form_for ([@Image, @Image.comments.build]) do |f| %>
-	<p>
-		<%= f.label "Write comment" %>
-	<p>
-	<p>
-		<%= f.text_area :text %>
-	</p>
-	<p>
-		<%= f.submit "Post comment" %>
-	</p>
-<% end %>
-<% end %>
-<% end %>
-
-<br/>
-
-<% @Image.comments.each do |t| %>
-	<% if !t.new_record? %>
-	<% if t.text != ""%>
-		<p><b><%= t.user.first_name + " " + t.user.last_name %>
-			<%= " - " + t.created_at.to_s(:db) %></b></p>
-		<p><%= t.text %></p>
-		<br />
-	<% end %>
-	<% end %>
-<% end %>
+<%= render 'comments/image_show' %>

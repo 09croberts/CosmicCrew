@@ -1,0 +1,40 @@
+<% if false %>
+	<h3>No Comments</h3>
+<% else %>
+	<h3>Comments (<%= @Image.comments.count %>)</h3>
+<% end %>
+
+<% if user_signed_in? %>
+<% if not current_user.guest? %>
+<%= form_for ([@Image, @Image.comments.build]) do |f| %>
+	<p>
+		<%= f.label "Write comment" %>
+	<p>
+	<p>
+		<%= f.text_area :text %>
+	</p>
+	<p>
+		<%= f.submit "Post comment" %>
+	</p>
+<% end %>
+<% end %>
+<% end %>
+
+<br/>
+
+<% @Image.comments.each do |t| %>
+	<!-- If record exists -->
+	<% if !t.new_record? %>
+
+	<% if t.text != ""%>
+		<p><b><%= t.user.first_name + " " + t.user.last_name %>
+			<%= " - " + t.created_at.to_s(:db) %></b></p>
+		<p><%= t.text %></p>
+	<% end %>
+	<% if current_user.admin? or (current_user == t.user) %>
+		<%= button_to "Delete", image_comment_path(@Image, t), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: "Are you sure that you wish to delete the comment?"} %>
+	<% end %>
+	<br />
+
+	<% end %>
+<% end %>

@@ -9,4 +9,8 @@ class CommentPolicy
 	def create?
 		@current_user.member? or @current_user.admin?
 	end
+
+	def destroy?
+		@current_user == @comment.user or @current_user.admin?
+	end
 end
