@@ -19,7 +19,8 @@ class UsersController < ApplicationController
   	if @user.update_attributes(secure_params)
   		redirect_to users_path, :notice => "Account updated"
   	else
-  		redirect_to users_path, :alert => "An error occurred"
+      flash[:alert] = @user.errors.full_messages.join(', ')
+  		redirect_to users_path
   	end
   end
 
@@ -28,7 +29,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to root_path, notice: "Signed up"
     else
-      flash[:alert] = "An error occurred"
+      flash[:alert] = @user.errors.full_messages.join(', ')
       redirect_to new_user_registration_path
     end
   end
