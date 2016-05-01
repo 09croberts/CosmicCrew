@@ -8,8 +8,11 @@ class CommentsController < ApplicationController
 		@Comment.user_id = current_user.id
 
 		authorize @Comment
-		@Comment.save
 
+		if !@Comment.save
+			flash[:alert] = @Comment.errors.full_messages.join(',')
+		end
+		
 		redirect_to image_show_path(@Image)
 	end
 

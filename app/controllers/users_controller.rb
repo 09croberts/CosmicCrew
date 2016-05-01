@@ -27,6 +27,9 @@ class UsersController < ApplicationController
     @user = User.new(sign_up_params)
     if @user.save
       redirect_to root_path, notice: "Signed up"
+    else
+      flash[:alert] = "An error occurred"
+      redirect_to new_user_registration_path
     end
   end
 
