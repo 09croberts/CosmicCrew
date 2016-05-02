@@ -3,9 +3,6 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  get 'users/index'
-  get 'users/show/:id' => 'users#show', as: :user
-
   #Images and comments
   resources :images, only: [:index, :new, :create, :destroy] do
     resources :comments, only: [:create, :destroy]
@@ -18,7 +15,7 @@ Rails.application.routes.draw do
   resources :users, except: :create
   post 'create_user' => 'users#create', as: :create_user
 
-  # You can have the root of your site routed with "root"
+  # Root path (home)
   root 'static#home'
 
   #Image not found

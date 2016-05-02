@@ -6,12 +6,12 @@ class UserPolicy
 		@user = model
 	end
 
-	def index?
-		@current_user.admin?
-	end
-
 	def show?
 		true
+	end
+
+	def index?
+		@current_user.admin?
 	end
 
 	def update?

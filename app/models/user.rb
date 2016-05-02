@@ -12,8 +12,8 @@ class User < ActiveRecord::Base
 	validate :dob_must_be_in_the_past
 
 	def dob_must_be_in_the_past
-		if !(date == nil)
-			if date > Date.today
+		if !(dob == nil)
+			if dob > Date.today
 				errors.add(:date, "can't be in the future")
 			end
 		else

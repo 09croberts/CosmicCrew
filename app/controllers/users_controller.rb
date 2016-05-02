@@ -2,14 +2,14 @@ class UsersController < ApplicationController
 	before_action :authenticate_user!, :except => [:create, :show]
 	after_action :verify_authorized, :except => [:create, :show]
 
-  def index
-  	@users = User.all
-  	authorize User
-  end
-
   def show
   	@user = User.find(params[:id])
   	authorize User
+  end
+
+  def index
+    @users = User.all
+    authorize User
   end
 
   def update
