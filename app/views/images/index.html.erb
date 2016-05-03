@@ -15,10 +15,10 @@
 </div>
 
 <div>
-<% @Images.in_groups_of(3).each_with_index do |row, index| %>
+<% @Images.in_groups_of(3).each_with_index do |group, index| %>
    <div class = "row">
       <div class = "col-md-1"></div>
-      <% row.each do |t| %>
+      <% group.each do |t| %>
       <div class = "col-md-2"><br/>
          <% if !t.nil? %>
          <p align = "center"><b><%= t.title %></b></p>
