@@ -1,10 +1,4 @@
-<% if @user.admin? %>
-	<font color = "DarkGoldenRod">
-<% else %>
-	<font color = "black">
-<% end %>
 <h2><%= @user.first_name + " " + @user.last_name %></h2>
-</font>
 
 <p><b>Email: </b><%= @user.email %></p>
 <p><b>Date of birth: </b><%= @user.dob.strftime("%d/%m/%Y") %>
