@@ -2,6 +2,7 @@
 <div class = "col-md-4 col-md-offset-1">
     <br/>
     <%= form_tag image_gallery_path(1), :method => 'get' do %>
+    
     <text><b>Object:</b></text>
     <%= select_tag :search_btype, options_for_select([["Select body type", ""],
        "Comet",
