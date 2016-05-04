@@ -11,7 +11,7 @@ class Image < ActiveRecord::Base
                                                "Solar Body",
                                                "Star"], :allow_nil => false
 	validates :title, length: { minimum: 1, maximum: 50, message: "must be 1-50 characters long" }
-	validates :location, length: { minimum: 1, maximum: 100, message: "must be 1-50 characters long" }
+	validates :location, length: { minimum: 1, maximum: 100, message: "must be 1-100 characters long" }
 	validates :description, length: { maximum: 500, message: "must not be longer than 500 characters" }
 	validates_numericality_of :width, greater_than: 99, message: "must be great than 100px"
 	validates_numericality_of :height, greater_than: 99, message: "must be great than 100px"

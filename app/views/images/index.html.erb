@@ -1,8 +1,8 @@
 <!-- Working out variables for pagination -->
 <% if params.has_key?(:id) %>
-<% page = params[:id] %>
+   <% page = params[:id] %>
 <% else %>
-<% page = "1" %>
+   <% page = "1" %>
 <% end %>
 
 <% max_pages = (@AvailableImages.to_f/9).ceil %>
@@ -68,7 +68,9 @@
                <% end %>
 
                <!-- Show current page -->
-               <li class = "page-item active"><%= link_to(page, image_gallery_path(page.to_i), class: "page-link") %></li>
+               <li class = "page-item active">
+                  <span class = "page-link"><%= page %></span>
+               </li>
 
                <!-- Next page -->
                <% if page == max_pages.to_s %>
