@@ -38,7 +38,6 @@ class ImagesController < ApplicationController
   	if @Image.save
   		redirect_to image_show_path(@Image), notice: "The image has been uploaded"
   	else
-      flash[:alert] = @Image.errors.full_messages.join(', ')
   		redirect_to new_image_path
   	end
   end
