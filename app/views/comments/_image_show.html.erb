@@ -31,8 +31,10 @@
 			<%= " - " + t.created_at.to_s(:db) %></b></p>
 		<p><%= t.text %></p>
 	<% end %>
+	<% if user_signed_in? %>
 	<% if current_user.admin? or (current_user == t.user) %>
 		<%= button_to "Delete", image_comment_path(@Image, t), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: "Are you sure that you wish to delete the comment?"} %>
+	<% end %>
 	<% end %>
 	<br />
 
