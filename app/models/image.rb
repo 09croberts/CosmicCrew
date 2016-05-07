@@ -20,7 +20,7 @@ class Image < ActiveRecord::Base
 
 	def date_must_be_in_the_past
 		if !(date == nil)
-			if date > Date.today
+			if date >= Date.today
 				errors.add(:date, "can't be in the future")
 			end
 		else

@@ -34,7 +34,8 @@
 
       <div class = "form-group">
          <%= f.label :attachment %>
-         <%= f.file_field :attachment %>
+         <%= f.file_field :attachment,
+                           accept: "image/png,image/gif,image/jpeg,image/jpg,image/bmp" %>
       </div>
       
       <%= f.submit "Upload", class: "btn btn-primary" %>
